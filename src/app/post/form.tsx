@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { FormEvent, useState } from "react"
 
 export const PostForm: React.FC = () => {
@@ -28,7 +30,7 @@ export const PostForm: React.FC = () => {
       }
 
       const responseData = await res.json();
-      console.log(responseData);
+
       return responseData
 
     } catch (error) {
@@ -64,10 +66,10 @@ export const PostForm: React.FC = () => {
             placeholder="ここに本文を入力">
           </textarea>
         </div>
-        <button type="submit">送信</button>
+        <Link href="/welcome">
+          <button type="submit">送信</button>
+        </Link>
       </form>
     </>
    )
   }
-
-

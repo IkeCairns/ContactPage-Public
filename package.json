@@ -27,5 +27,8 @@
   },
   "compilerOptions": {
     "baseUrl": "."
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
   }
 }
