@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { FormEvent, useState } from "react"
 
 export const PostForm: React.FC = () => {
