@@ -65,9 +65,7 @@ export const PostForm: React.FC = () => {
             placeholder="ここに本文を入力">
           </textarea>
         </div>
-        <Link href="/welcome">
-          <button type="submit">送信</button>
-        </Link>
+        <button type="submit">送信</button>
       </form>
     </>
    )
