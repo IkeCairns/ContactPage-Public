@@ -1,11 +1,13 @@
 "use client"
 
 import { FormEvent, useState } from "react"
+import { useRouter } from "next/navigation"
 
 export const PostForm: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const router = useRouter();
 
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -18,9 +20,9 @@ export const PostForm: React.FC = () => {
       });
 
       console.log(result);
+      router.push("/welcome");
       return result;
 
-      // router.push("/welcome");
 
     } catch (error) {
       console.error(`Error submitting the form`, error);
