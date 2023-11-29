@@ -7,29 +7,20 @@ export const PostForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const onSubmit = async (e: FormEvent) => {
+  const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
-
     try {
-      const res = await fetch("/api/post", {
+      const body = { name, email, message }
+      const result =await fetch("/api/post", {
         method: "POST",
-        headers: {
-          "Content-type": "application/json"
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          message,
-        }),
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({ body }),
       });
 
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
+      console.log(result);
+      return result;
 
-      const responseData = await res.json();
-
-      return responseData
+      // router.push("/welcome");
 
     } catch (error) {
       console.error(`Error submitting the form`, error);
@@ -40,16 +31,16 @@ export const PostForm: React.FC = () => {
     <>
       <form onSubmit={onSubmit}>
         <div>
-          <label htmlFor="name">お名前</label>
+          <label htmlFor="name">Name</label>
           <input
             value={name}
             onChange={ e => setName(e.target.value)}
             type="text"
-            placeholder="山田　花子"
+            placeholder="Your Name"
           />
         </div>
         <div>
-          <label htmlFor="email">メールアドレス</label>
+          <label htmlFor="email">Email</label>
           <input
             value={email}
             onChange={ e => setEmail(e.target.value)}
@@ -57,14 +48,14 @@ export const PostForm: React.FC = () => {
             placeholder="abc@example.comf"/>
         </div>
         <div>
-          <label htmlFor="inquiry">お問い合わせ内容</label>
+          <label htmlFor="inquiry">Message</label>
           <textarea 
             value={message}
             onChange={ e => setMessage(e.target.value)}
-            placeholder="ここに本文を入力">
+            placeholder="Message">
           </textarea>
         </div>
-        <button type="submit">送信</button>
+        <button type="submit">Submit</button>
       </form>
     </>
    )

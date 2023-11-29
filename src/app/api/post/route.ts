@@ -1,23 +1,18 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import prisma from "src/lib/prisma";
 
-export async function GET(){
-  const posts = await prisma.post.findMany();
-  return NextResponse.json(posts)
-}
+// export async function GET(){
+//   const posts = await prisma.post.findMany();
+//   return NextResponse.json(posts)
+// }
 
-export async function POST(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  const { name, email, message } = await req.body
-  console.log(name, email, message)
+export async function POST(req: NextRequest) {
+  const { name, email, message } = await req.json()
   const result = prisma.post.create({
     data: {
-      name: name,
-      email : email,
-      message: message      
+      name,
+      email,
+      message
     }
   })
   return NextResponse.json(result)
