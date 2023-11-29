@@ -1,6 +1,6 @@
 "use client"
 
-import { FormEvent, useState } from "react"
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 
 export const PostForm: React.FC = () => {
@@ -22,7 +22,6 @@ export const PostForm: React.FC = () => {
       console.log(result);
       router.push("/welcome");
       return result;
-
 
     } catch (error) {
       console.error(`Error submitting the form`, error);
